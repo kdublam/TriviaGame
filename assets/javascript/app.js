@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     //global variables
-    var questNum = 0; // variable to display question
-    var userGuess;
-    var clock;
-    var correct = 0
-    var incorrect = 0;
-    var unanswered = 0;
+    var questNum = 0;       // variable used to check each question
+    var userGuess;          // Holds each guess and used to compare with answer
+    var clock;              // used for the countdown timer
+    var correct = 0         // Track the number of correct answers
+    var incorrect = 0;      // Track the number of incorrect answers
+    var unanswered = 0;     // Track the number of unanswered questions
 
-    //objects of questions and answers
+    //objects of questions and answers and items that associate with each
     var trivia = [{
         questions: "What is the name of Jon Snow's Direwolf",
         choices: ['Grey Wind', 'Summer', 'Ghost', 'Nymeria'],
@@ -71,14 +71,8 @@ $(document).ready(function () {
         text: "he House of Black and White is a temple in Braavos dedicated to the Many-Faced God. It serves as the headquarters of the guild of religious assassins known as the Faceless Men. It sits alone on a small island in the lagoon of Braavos. Although it can be reached by boat or bridge from other locations in the city, the island is usually deserted.",
     }]
 
-    // function questionStart() {
-    //     questionID = setInterval(displayQuest, 3000);
-    //   } 
 
-    //   function questionStop(){
-    //       clearInterval(questionID);
-    //   }
-
+    //Function for Start button in the main menu
     $("#start_button").click(function () {
         themeMusic();
         $("#startmenu").remove();
@@ -89,7 +83,7 @@ $(document).ready(function () {
     });
 
 
-
+    //Function for Reset button that will be displayed once the game begins
     function resetButton() {
         var footer = $("<nav>");
         footer.addClass("navbar fixed-bottom");
@@ -129,20 +123,13 @@ $(document).ready(function () {
             $("#choices").append(choiceList);
         }
 
+        //Call the countdown timer to start for each question
         countDown();
-
-        // if (clock === 0) {
-        //     console.log("time's up");
-        //     unanswered++;
-        //     questNum++;
-        //     displayQuest();
-        //     printResult();
-        //     clearInterval(time);
-        // }
 
 
     }
 
+    //Object for the text to display after the player chooses and answer
     var resultText = {
         right: "King of the North!",
         wrong: "You know nothing, Jon Snow..",
@@ -150,6 +137,7 @@ $(document).ready(function () {
         complete: "When you play the game of thrones, you win or you die."
     }
 
+    //Click function for handling user guesses
     $(document).on("click", ".choices", function () {
         userGuess = $(this).attr("value");
         $("#question").children().hide();
@@ -161,26 +149,14 @@ $(document).ready(function () {
         var answerText = trivia[questNum].text;
 
 
-
-        console.log("User's Guess: " + userGuess);
-
-
-
         if (userGuess === trivia[questNum].answer && clock != 0) {
-            console.log("answer: " + trivia[questNum].answer);
             correct++;
             questNum++;
-            // $("#question").children().hide();
-            //     $("#choices").children().hide();
-            //     $("#timer").children().hide();
-            //     $("#result").children().hide();
-            //     $("#answer").empty()
-
-            // $("#timer").empty();
-            setTimeout(displayQuest, 5000);
+           
+            setTimeout(displayQuest, 10000);
             clearInterval(time);
 
-            var answerResult = $("<h2>");
+            var answerResult = $("<h1>");
             answerResult.append(resultText.right);
             $("#answer").append(answerResult);
 
@@ -194,18 +170,8 @@ $(document).ready(function () {
             gifPic.attr("src", gifsrc);
             $("#gifpic").append(gifPic);
 
-            if (questNum === trivia.length) {
-
-                // $("#question").children().hide();
-                // $("#choices").children().hide();
-                // $("#timer").children().hide();
-                // $("#result").children().hide();
-                // $("#answer").empty()
-                // var answerResult = $("<h2>");
-                // answerResult.append(resultText.complete);
-                // $("#answer").append(answerResult);
-                setTimeout(finalQuest, 5000);
-
+            if (questNum === trivia.length) { // Run this if it is on the last question of the game
+                setTimeout(finalQuest, 10000);
             }
 
 
@@ -216,21 +182,12 @@ $(document).ready(function () {
             incorrect++;
             questNum++;
 
-
-            // $("#timer").empty();
-            setTimeout(displayQuest, 5000);
+            setTimeout(displayQuest, 10000);
             clearInterval(time);
 
-            // $("#question").children().hide();
-            //     $("#choices").children().hide();
-            //     $("#timer").children().hide();
-            //     $("#result").children().hide();
-            //     $("#answer").empty()
-
-            var answerResult = $("<h2>");
+            var answerResult = $("<h1>");
             answerResult.append(resultText.wrong);
             $("#answer").append(answerResult);
-
 
             var showText = $("<p>");
             showText.append(answerText);
@@ -241,31 +198,22 @@ $(document).ready(function () {
             gifPic.attr("src", gifsrc);
             $("#gifpic").append(gifPic);
 
-            if (questNum === trivia.length) {
-
-                // $("#question").children().hide();
-                // $("#choices").children().hide();
-                // $("#timer").children().hide();
-                // $("#result").children().hide();
-                // $("#answer").empty()
-                // var answerResult = $("<h2>");
-                // answerResult.append(resultText.complete);
-                // $("#answer").append(answerResult);
-                setTimeout(finalQuest, 5000);
-
+            if (questNum === trivia.length) { // Run this for the last question
+                setTimeout(finalQuest, 10000);
             }
 
         }
 
     })
 
+    // Display result and game ending message
     function finalQuest() {
         $("#question").children().hide();
         $("#choices").children().hide();
         $("#timer").children().hide();
         $("#result").children().hide();
         $("#answer").empty()
-        var answerResult = $("<h2>");
+        var answerResult = $("<h1>");
         answerResult.css("margin-top", "60px")
         answerResult.append(resultText.complete);
         $("#answer").append(answerResult);
@@ -273,29 +221,25 @@ $(document).ready(function () {
 
     }
 
-
+    // Function for countdown timer on each question
     function countDown() {
         $("#timer").empty();
-        clock = 10;
+        clock = 20;
         var timeDiv = $("<h3>");
         timeDiv.append("Time left: " + clock + " sec");
         $("#timer").append(timeDiv);
-        time = setInterval(timer, 1000);
-
-
+        time = setInterval(timer, 1000); //C alls the timer function every 1 second 
     }
 
+    // Function for handling the countdown timer and how it is displayed
     function timer() {
         clock--;
         $("#timer").empty();
         var timeDiv = $("<h3>");
         timeDiv.append("Time left: " + clock + " sec");
         $("#timer").append(timeDiv);
-        console.log(clock);
 
         if (clock < 1) {
-            console.log("time's up");
-
             $("#question").children().hide();
             $("#choices").children().hide();
             $("#timer").children().hide();
@@ -306,10 +250,10 @@ $(document).ready(function () {
 
             unanswered++;
             questNum++;
-            setTimeout(displayQuest, 5000);
+            setTimeout(displayQuest, 10000);
             clearInterval(time);
 
-            var answerResult = $("<h2>");
+            var answerResult = $("<h1>");
             answerResult.append(resultText.timesUp);
             $("#answer").append(answerResult);
 
@@ -323,24 +267,14 @@ $(document).ready(function () {
             gifPic.attr("src", gifsrc);
             $("#gifpic").append(gifPic);
 
-            if (questNum === trivia.length) {
-
-                // $("#question").children().hide();
-                // $("#choices").children().hide();
-                // $("#timer").children().hide();
-                // $("#result").children().hide();
-                // $("#answer").empty()
-                // var answerResult = $("<h2>");
-                // answerResult.append(resultText.complete);
-                // $("#answer").append(answerResult);
-                setTimeout(finalQuest, 5000);
-
+            if (questNum === trivia.length) { // Run this for the final question
+                setTimeout(finalQuest, 10000);
             }
         }
     }
 
 
-    //function to correct/incorrect answers
+    //function to print the result during each round and at the end of the game
     function printResult() {
         $("#result").empty();
         $("#timer").empty();
@@ -356,7 +290,7 @@ $(document).ready(function () {
         $("#result").append(unansweredDiv);
     }
 
-
+    //Reset button function
     $(document).on("click", "#resetbutton", function () {
         location.reload();
     })
@@ -366,8 +300,9 @@ $(document).ready(function () {
 
 });
 
+// Background music when the game starts 
 var theme = document.getElementById("theme");
-    
-    function themeMusic() {
-        theme.play();
-    }
+
+function themeMusic() {
+    theme.play();
+}
