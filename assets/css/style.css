@@ -6,3 +6,22 @@ body {
     width: 100%;
     height: auto;
 }
+
+#startmenu{
+    margin-top: 100px;
+
+}
+
+#startbtn{
+    display: block;
+    text-align: center;
+}
+#startmsg{
+    display: block;
+    text-align: center;
+}
+
+#footerbar{
+    display: block;
+    text-align: center;
+}

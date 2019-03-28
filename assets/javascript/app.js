@@ -18,55 +18,55 @@ $(document).ready(function () {
     }, {
         questions: "What is the surname given to bastards born in Dorne?",
         choices: ['Sand', 'River', 'Waters', 'Stone'],
-        image: "image",
+        image: "assets/images/dorne.gif",
         answer: "Sand",
         text: "The term bastard refers to anyone born out of wedlock.In the North they are called Snow. In the Riverlands they are called River. In the Crownlands they are called Waters. In the Iron Islands they are called Pyke. In the Vale they are called Stone. In the Stormlands they are called Storm. In the Reach they are called Flowers. In the Westerlands they are called Hill. In Dorne they are called Sand.",
     }, {
         questions: "Who was Margaery Tyrell's first husband?",
         choices: ['Renly Baratheon', 'Stannis Baratheon', 'Tommen Baratheon', 'Joffrey Baratheon'],
-        image: "image",
+        image: "assets/images/tyrell.gif",
         answer: "Renly Baratheon",
         text: "Margaery Tyrell marries King Renly Baratheon, the lover of her brother Loras. She encourages Renly to produce an heir with her but he is unable to become aroused by her. Renly is killed in mysterious circumstances. Margaery's ambition to be Queen brings the Tyrells to Kings Landing during the Battle of the Blackwater."
     }, {
         questions: "What is the name of the song that famously accompanies the Red Wedding?",
         choices: ['Purple Rain', 'Cry Me a River', 'The Bear and the Maiden Fair', 'The Rains of Castamere'],
-        image: "image",
+        image: "assets/images/redwedding.gif",
         answer: "The Rains of Castamere",
         text: "The musicians - actually assassins - hired by Lothar Frey for the wedding feast of Edmure Tully and Roslin Frey begin playing the song after the bedding of the newlyweds. The song is the signal for the forces of House Frey and House Bolton to turn on the Starks and Tullys and slaughter them. Catelyn Stark is the only one present who recognizes the tune, but by the time she realizes what is happening, it is already far too late.",
     }, {
         questions: "What is the name of the sword that Lord Commander Mormont gives to Jon Snow?",
         choices: ['Longtooth', 'Heartsbane', 'Heartsclaw', 'Longclaw'],
-        image: "image",
+        image: "assets/images/longclaw.gif",
         answer: "Longclaw",
         text: "Longclaw is a Valyrian steel sword that was the ancestral weapon of House Mormont for five centuries. Years later, Jeor gave Longclaw to Jon Snow as a reward for saving his life from a white walker. Before giving it to Jon he had the pommel remade, replacing the bear with a direwolf, the sigil of House Stark.",
     }, {
         questions: "What is the name of Sam and Gilly's son?",
         choices: ['Craster Junior', 'Sam', 'Randyll', 'Snow'],
-        image: "image",
+        image: "assets/images/sam.gif",
         answer: "Sam",
         text: "After Craster is killed and Commander Mormont's rangers turn on each other, Samwell runs with Gilly and her son to Castle Black. Along their journey, Gilly becomes fascinated with Samwell over his knowledge and his bravery of defending her son from a White Walker. After the three of them manage to reach Castle Black, Maester Aemon allows Gilly and her son to stay with them. In gratitude for Samwell helping them, Gilly names her son after Sam."
     }, {
         questions: "What type of cake is Sansa Stark especially fond of?",
         choices: ['Lime', 'Lemon', 'Ginger', 'Orange'],
-        image: "image",
+        image: "assets/images/lemon.gif",
         answer: "Lemon",
         text: "Lemon cakes are a kind of sweet baked dessert, made using lemons. They are typically served as small cakes, held and eaten with one hand (as opposed to a larger cake requiring utensils). Lemon cakes are relatively expensive treats enjoyed by upper-class noblewomen of the Seven Kingdoms, where they are a mainstay at the refined social gatherings of noble courts. Lemon cakes are Sansa Stark's favorite type of cake.",
     }, {
         questions: 'What is the correct response to someone saying "Valar Morghulis"?',
         choices: ['All Men Must Die', 'All Men Must Serve', 'Valar Dohaeris', 'Dracarys'],
-        image: "image",
+        image: "assets/images/valar.gif",
         answer: "Valar Dohaeris",
         text: 'Valar morghulis translates to "all men must die" in High Valyrian. It is a customary saying in Essos that is traditionally answered with "Valar Dohaeris," meaning "all men must serve." Jaqen Hghar teaches Arya Stark these words when he departs and gives her a small coin. Although he does not explain the meaning to her she begins to use the words in her prayer of people she wants dead.',
     }, {
         questions: "Who was the Tyrion Lannister's champion in his trial by combat?",
         choices: ['The Mountain', 'The Hound', 'Oberyn Martell', 'Ser Ilyn Payne'],
-        image: "image",
+        image: "assets/images/oberyn.gif",
         answer: "Oberyn Martell",
         text: "A trial by combat is a means by which a party can prove their innocence when accused of a crime in the Seven Kingdoms. Tyrion demands a trial by combat to defend his innocence following Joffrey's death. Oberyn Martell then volunteers to stand as champion for Tyrion to get a chance to kill the Mountain as revenge for the rape and murder of his sister Elia and her children during the Sack of King's Landing.",
     }, {
         questions: "Where does Arya undergo her training to become 'no-one' and part of the Faceless Men?",
         choices: ['The Great Sept Of Balor', 'The House of Black and White', 'The Iron Bank Of Braavos', 'The House of Flying Daggers'],
-        image: "image",
+        image: "assets/images/arya.gif",
         answer: "The House of Black and White",
         text: "he House of Black and White is a temple in Braavos dedicated to the Many-Faced God. It serves as the headquarters of the guild of religious assassins known as the Faceless Men. It sits alone on a small island in the lagoon of Braavos. Although it can be reached by boat or bridge from other locations in the city, the island is usually deserted.",
     }]
@@ -80,16 +80,37 @@ $(document).ready(function () {
     //   }
 
     $("#start_button").click(function () {
+        $("#startmenu").remove();
         $(this).hide();
+        $("#start_text").hide();
         displayQuest();
+        resetButton();
     });
+
+
+
+    function resetButton() {
+        var footer = $("<nav>");
+        footer.addClass("navbar fixed-bottom");
+        footer.attr("id", "footerbar");
+        $("#reset").append(footer);
+        var resetbtn = $("<button>");
+        resetbtn.addClass("btn btn-secondary btn-lg");
+        resetbtn.attr("id", "resetbutton");
+        resetbtn.html("Restart Game");
+        $("#footerbar").append(resetbtn);
+    }
 
 
     //function to display questions and answers
     function displayQuest() {
         $("#question").children().hide();
         $("#choices").children().hide();
+        $("#timer").children().hide();
         $("#gifpic").children().hide();
+        $("#answer").children().hide();
+
+        printResult();
         var questShow = $("<div>");
         questShow.attr("id", trivia[questNum].answer);
         questShow.append(trivia[questNum].questions);
@@ -120,7 +141,7 @@ $(document).ready(function () {
 
     }
 
-    var answerText = {
+    var resultText = {
         right: "King of the North!",
         wrong: "You know nothing, Jon Snow..",
         timesUp: "Winter is coming.",
@@ -131,8 +152,9 @@ $(document).ready(function () {
         userGuess = $(this).attr("value");
         $("#question").children().hide();
         $("#choices").children().hide();
-        $("#timer").hide();
-        $("#result").hide();
+        $("#timer").children().hide();
+        $("#result").children().hide();
+        $("#answer").empty()
         var gifsrc = trivia[questNum].image;
         var answerText = trivia[questNum].text;
 
@@ -146,10 +168,20 @@ $(document).ready(function () {
             console.log("answer: " + trivia[questNum].answer);
             correct++;
             questNum++;
+            // $("#question").children().hide();
+            //     $("#choices").children().hide();
+            //     $("#timer").children().hide();
+            //     $("#result").children().hide();
+            //     $("#answer").empty()
+
             // $("#timer").empty();
             setTimeout(displayQuest, 5000);
-            printResult();
             clearInterval(time);
+
+            var answerResult = $("<h2>");
+            answerResult.append(resultText.right);
+            $("#answer").append(answerResult);
+
 
             var showText = $("<p>");
             showText.append(answerText);
@@ -159,6 +191,20 @@ $(document).ready(function () {
             gifPic.attr("src", gifsrc);
             $("#gifpic").append(gifPic);
 
+            if (questNum === trivia.length) {
+
+                // $("#question").children().hide();
+                // $("#choices").children().hide();
+                // $("#timer").children().hide();
+                // $("#result").children().hide();
+                // $("#answer").empty()
+                // var answerResult = $("<h2>");
+                // answerResult.append(resultText.complete);
+                // $("#answer").append(answerResult);
+                setTimeout(finalQuest, 5000);
+
+            }
+
 
 
 
@@ -166,20 +212,69 @@ $(document).ready(function () {
         else if (userGuess != trivia[questNum].answer && clock != 0) {
             incorrect++;
             questNum++;
+
+
             // $("#timer").empty();
             setTimeout(displayQuest, 5000);
-            printResult();
             clearInterval(time);
+
+            // $("#question").children().hide();
+            //     $("#choices").children().hide();
+            //     $("#timer").children().hide();
+            //     $("#result").children().hide();
+            //     $("#answer").empty()
+
+            var answerResult = $("<h2>");
+            answerResult.append(resultText.wrong);
+            $("#answer").append(answerResult);
+
+
+            var showText = $("<p>");
+            showText.append(answerText);
+            $("#gifpic").append(showText);
+
+            var gifPic = $("<img>");
+            gifPic.attr("src", gifsrc);
+            $("#gifpic").append(gifPic);
+
+            if (questNum === trivia.length) {
+
+                // $("#question").children().hide();
+                // $("#choices").children().hide();
+                // $("#timer").children().hide();
+                // $("#result").children().hide();
+                // $("#answer").empty()
+                // var answerResult = $("<h2>");
+                // answerResult.append(resultText.complete);
+                // $("#answer").append(answerResult);
+                setTimeout(finalQuest, 5000);
+
+            }
 
         }
 
     })
 
+    function finalQuest() {
+        $("#question").children().hide();
+        $("#choices").children().hide();
+        $("#timer").children().hide();
+        $("#result").children().hide();
+        $("#answer").empty()
+        var answerResult = $("<h2>");
+        answerResult.append(resultText.complete);
+        $("#answer").append(answerResult);
+        printResult();
+
+    }
+
 
     function countDown() {
         $("#timer").empty();
         clock = 10;
-        $("#timer").append("Time left: " + clock + " sec");
+        var timeDiv = $("<div>");
+        timeDiv.append("Time left: " + clock + " sec");
+        $("#timer").append(timeDiv);
         time = setInterval(timer, 1000);
 
 
@@ -188,16 +283,53 @@ $(document).ready(function () {
     function timer() {
         clock--;
         $("#timer").empty();
-        $("#timer").append("Time left: " + clock + " sec");
+        var timeDiv = $("<div>");
+        timeDiv.append("Time left: " + clock + " sec");
+        $("#timer").append(timeDiv);
         console.log(clock);
 
         if (clock < 1) {
             console.log("time's up");
+
+            $("#question").children().hide();
+            $("#choices").children().hide();
+            $("#timer").children().hide();
+            $("#result").children().hide();
+            $("#answer").empty()
+            var gifsrc = trivia[questNum].image;
+            var answerText = trivia[questNum].text;
+
             unanswered++;
             questNum++;
             setTimeout(displayQuest, 5000);
-            printResult();
             clearInterval(time);
+
+            var answerResult = $("<h2>");
+            answerResult.append(resultText.timesUp);
+            $("#answer").append(answerResult);
+
+
+            var showText = $("<p>");
+            showText.append(answerText);
+            $("#gifpic").append(showText);
+
+            var gifPic = $("<img>");
+            gifPic.attr("src", gifsrc);
+            $("#gifpic").append(gifPic);
+
+            if (questNum === trivia.length) {
+
+                // $("#question").children().hide();
+                // $("#choices").children().hide();
+                // $("#timer").children().hide();
+                // $("#result").children().hide();
+                // $("#answer").empty()
+                // var answerResult = $("<h2>");
+                // answerResult.append(resultText.complete);
+                // $("#answer").append(answerResult);
+                setTimeout(finalQuest, 5000);
+
+            }
         }
     }
 
@@ -205,6 +337,8 @@ $(document).ready(function () {
     //function to correct/incorrect answers
     function printResult() {
         $("#result").empty();
+        $("#timer").empty();
+
         var correctDiv = $("<p>");
         correctDiv.append("Correct: " + correct)
         $("#result").append(correctDiv);
@@ -217,7 +351,9 @@ $(document).ready(function () {
     }
 
 
-
+    $(document).on("click", "#resetbutton", function () {
+        location.reload();
+    })
 
 
 
