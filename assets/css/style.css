@@ -13,6 +13,7 @@ body {
 }
 
 #startbtn{
+    margin-top: 50px;
     display: block;
     text-align: center;
 }
@@ -24,4 +25,26 @@ body {
 #footerbar{
     display: block;
     text-align: center;
+}
+
+#questRow{
+    margin-top: 60px;
+    display: block;
+    text-align: center;
+
+}
+#choicesRow{
+    display: block;
+    text-align: center;
+}
+
+#resultTable{
+    display: block;
+    text-align: center;
+}
+
+#answerPage{
+    display: block;
+    text-align: center;
+    width: 40%;
 }

@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <title>Game of Thrones Trivia</title>
+
+    <audio id="theme">
+        <source src="assets/audio/GOT.mp3" type="audio/mpeg">
+    </audio>
 </head>
 
 <body>
@@ -37,18 +41,33 @@
 
 
 
+    <div class="container" id="game">
+        <div class="row" id="questRow">
+            <div id="question"></div>
+        </div>
+        <div class="row" id="choicesRow">
+            <div id="choices"></div>
+        </div>
 
-    <div id="question"></div>
+    </div>
 
-    <div id="choices"></div>
+    <div class="container" id="resultTable">
 
-    <div id="timer"></div>
+        <div id="timer"></div>
 
-    <div id="result"></div>
+        <div id="result"></div>
 
-    <div id="answer"></div>
 
-    <div id="gifpic"></div>
+    </div>
+
+
+    <div class="container" id="answerPage">
+        
+        <div id="answer"></div>
+
+        <div id="gifpic"></div>
+    </div>
+
 
     <div id="reset"></div>
 

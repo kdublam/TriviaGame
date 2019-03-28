@@ -80,6 +80,7 @@ $(document).ready(function () {
     //   }
 
     $("#start_button").click(function () {
+        themeMusic();
         $("#startmenu").remove();
         $(this).hide();
         $("#start_text").hide();
@@ -111,7 +112,7 @@ $(document).ready(function () {
         $("#answer").children().hide();
 
         printResult();
-        var questShow = $("<div>");
+        var questShow = $("<h2>");
         questShow.attr("id", trivia[questNum].answer);
         questShow.append(trivia[questNum].questions);
         $("#question").append(questShow);
@@ -122,6 +123,7 @@ $(document).ready(function () {
             var choiceList = $("<button>");
             choiceList.attr("type", "button");
             choiceList.attr("value", trivia[questNum].choices[i]);
+            choiceList.css("margin", "20px");
             choiceList.addClass("btn btn-secondary btn-lg btn-block choices");
             choiceList.append(trivia[questNum].choices[i]);
             $("#choices").append(choiceList);
@@ -185,6 +187,7 @@ $(document).ready(function () {
 
             var showText = $("<p>");
             showText.append(answerText);
+            showText.css("text-align", "justify")
             $("#gifpic").append(showText);
 
             var gifPic = $("<img>");
@@ -231,6 +234,7 @@ $(document).ready(function () {
 
             var showText = $("<p>");
             showText.append(answerText);
+            showText.css("text-align", "justify")
             $("#gifpic").append(showText);
 
             var gifPic = $("<img>");
@@ -262,6 +266,7 @@ $(document).ready(function () {
         $("#result").children().hide();
         $("#answer").empty()
         var answerResult = $("<h2>");
+        answerResult.css("margin-top", "60px")
         answerResult.append(resultText.complete);
         $("#answer").append(answerResult);
         printResult();
@@ -272,7 +277,7 @@ $(document).ready(function () {
     function countDown() {
         $("#timer").empty();
         clock = 10;
-        var timeDiv = $("<div>");
+        var timeDiv = $("<h3>");
         timeDiv.append("Time left: " + clock + " sec");
         $("#timer").append(timeDiv);
         time = setInterval(timer, 1000);
@@ -283,7 +288,7 @@ $(document).ready(function () {
     function timer() {
         clock--;
         $("#timer").empty();
-        var timeDiv = $("<div>");
+        var timeDiv = $("<h3>");
         timeDiv.append("Time left: " + clock + " sec");
         $("#timer").append(timeDiv);
         console.log(clock);
@@ -311,6 +316,7 @@ $(document).ready(function () {
 
             var showText = $("<p>");
             showText.append(answerText);
+            showText.css("text-align", "justify")
             $("#gifpic").append(showText);
 
             var gifPic = $("<img>");
@@ -339,13 +345,13 @@ $(document).ready(function () {
         $("#result").empty();
         $("#timer").empty();
 
-        var correctDiv = $("<p>");
+        var correctDiv = $("<h5>");
         correctDiv.append("Correct: " + correct)
         $("#result").append(correctDiv);
-        var incorrectDiv = $("<p>");
+        var incorrectDiv = $("<h5>");
         incorrectDiv.append("Incorrect: " + incorrect)
-        $("#result").append(incorrectDiv);
-        var unansweredDiv = $("<p>");
+        $("#result").append(incorrectDiv)
+        var unansweredDiv = $("<h5>");
         unansweredDiv.append("Unanswered: " + unanswered)
         $("#result").append(unansweredDiv);
     }
@@ -359,3 +365,9 @@ $(document).ready(function () {
 
 
 });
+
+var theme = document.getElementById("theme");
+    
+    function themeMusic() {
+        theme.play();
+    }
