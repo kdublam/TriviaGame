@@ -58,7 +58,7 @@ $(document).ready(function () {
         answer: "Valar Dohaeris",
         text: 'Valar morghulis translates to "all men must die" in High Valyrian. It is a customary saying in Essos that is traditionally answered with "Valar Dohaeris," meaning "all men must serve." Jaqen Hghar teaches Arya Stark these words when he departs and gives her a small coin. Although he does not explain the meaning to her she begins to use the words in her prayer of people she wants dead.',
     }, {
-        questions: "Who was the Tyrion Lannister's champion in his trial by combat?",
+        questions: "Who was Tyrion Lannister's champion in his trial by combat?",
         choices: ['The Mountain', 'The Hound', 'Oberyn Martell', 'Ser Ilyn Payne'],
         image: "assets/images/oberyn.gif",
         answer: "Oberyn Martell",
